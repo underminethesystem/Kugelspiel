@@ -14,6 +14,7 @@ public class MainActivity extends AppCompatActivity {
         //this line is new aka third only subdir commit/push
         //in browser change
         //asbsd
+        System.out.print("test");
         System.out.println("hi");
         System.out.println("hi2");
         System.out.println("as");
