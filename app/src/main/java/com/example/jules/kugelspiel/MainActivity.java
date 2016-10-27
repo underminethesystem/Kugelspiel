@@ -15,6 +15,8 @@ public class MainActivity extends AppCompatActivity {
         //in browser change
         //asbsd
         System.out.println("hi");
+        System.out.println("hi2");
+
         System.out.println("Döner");
     }
 }
