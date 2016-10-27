@@ -7,6 +7,9 @@ package com.example.jules.kugelspiel.game;
 public class Game {
     public void start(){
         // init feld
-        // init kugel
+        boolean done = false;
+        while(!done){
+
+        }
     }
 }
