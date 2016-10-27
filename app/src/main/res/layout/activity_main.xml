@@ -25,4 +25,13 @@
         android:layout_marginStart="59dp"
         android:layout_marginTop="126dp"
         android:id="@+id/button" />
+
+    <CheckBox
+        android:text="CheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_toEndOf="@+id/textView"
+        android:layout_marginBottom="107dp"
+        android:id="@+id/checkBox" />
 </RelativeLayout>
