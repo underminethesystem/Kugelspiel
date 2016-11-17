@@ -7,11 +7,11 @@ import android.graphics.Color;
  */
 
 public class Tile {
-    public static final int COLOR_WALL = Color.BLACK ;
-    public static final int COLOR_FLOOR = Color.GREEN;
-    public static final int COLOR_START = Color.YELLOW;
-    public static final int COLOR_GOAL = Color.WHITE;
-    public static final int COLOR_LAVA = Color.RED;
+    public static final int COLOR_WALL = Color.rgb(30,30,10) ;
+    public static final int COLOR_FLOOR = Color.rgb(0,111,111);
+    public static final int COLOR_START = Color.GRAY;
+    public static final int COLOR_GOAL = Color.RED;
+    public static final int COLOR_LAVA = Color.rgb(200,50,50);
 
     public enum TileType{Floor,Wall,Start,Goal,Lava};
 
