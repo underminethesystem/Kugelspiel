@@ -7,14 +7,12 @@
     android:layout_height="match_parent"
     tools:context="com.example.jules.kugelspiel.MainActivity">
 
-    <ImageView
-        app:srcCompat="@mipmap/ic_launcher"
-        android:id="@+id/imageView"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_width="wrap_content"
-        android:adjustViewBounds="false" />
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/fragment_container">
+
+    </RelativeLayout>
 
 </RelativeLayout>
