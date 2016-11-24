@@ -53,6 +53,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
                 break;
 
         }
+        fragmentTransaction.hide(this);
         fragmentTransaction.commit();
 
     }
