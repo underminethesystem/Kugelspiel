@@ -18,6 +18,9 @@ public class DirectionManager extends Thread implements SensorEventListener {
 
     public static float yDir;
     public static float xDir;
+    public float y;
+    public float x;
+    public float z;
 
     public DirectionManager(SensorManager sm)
     {
@@ -54,8 +57,8 @@ public class DirectionManager extends Thread implements SensorEventListener {
     public void run(){
         // TODO: hier public direction Variablen __anhand__ der gemessenen Werte setzen
         while (true){
-            xDir = 1;
-            yDir = 1;
+            xDir=x;
+            yDir=y;
             try {
                 Thread.sleep(100);
             } catch (InterruptedException e) {
@@ -73,16 +76,14 @@ public class DirectionManager extends Thread implements SensorEventListener {
             return;
         }*/
 
-        float x = event.values[2];
-        float y = event.values[1];
-        float z = event.values[0];
+        x = event.values[0];
+        y = event.values[1];
+        xDir=x/5;
+        yDir=y/5;
 
         //else it will output the Roll, Pitch and Yawn values
-        String ot = "X (Roll) :"+ Float.toString(x) +"\n"+
-                    "Y (Pitch) :"+ Float.toString(y) +"\n"+
-                    "Z (Yaw) :"+ Float.toString(z);
+        String ot = "(Pitch) :"+ Float.toString(y) +"\n"+
+                    "(Yaw) :"+ Float.toString(z);
         System.out.println(ot);
-        xDir = 1;
-        yDir = 1;
     }
 }
