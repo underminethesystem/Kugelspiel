@@ -81,9 +81,9 @@ public class Map {
 
     };
     public Tile[][] tiles;
-    public int width =50;
-    public int height =30;
-    public int tileSize=40;
+    public static int width =50;
+    public static int height =30;
+    public static int tileSize=40;
 
     public Map(int index) {
         switch(index) {
@@ -143,7 +143,6 @@ public class Map {
                                 tiles[x][y] = new Tile(Tile.TileType.Goal);
                                 break;
                         }
-
                     }
                 }
 
@@ -159,7 +158,7 @@ public class Map {
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
         paint.setStrokeWidth(1);
-       for (int x=0;x<width;x++) {
+        for (int x=0;x<width;x++) {
             for (int y = 0; y < height; y++) {
                 paint.setColor(tiles[x][y].getColor());
                 paint.setStyle(Paint.Style.FILL);
@@ -171,10 +170,7 @@ public class Map {
                 canvas.drawRect(x*tileSize,y*tileSize,(x+1)*tileSize,(y+1)*tileSize, paint);
             }
         }
-
         iv.setImageBitmap(bitmap);
-
-
     }
 
 

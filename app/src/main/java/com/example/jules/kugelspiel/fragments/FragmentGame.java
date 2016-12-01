@@ -12,19 +12,18 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
+import com.example.jules.kugelspiel.DirectionManager;
+import com.example.jules.kugelspiel.MainActivity;
 import com.example.jules.kugelspiel.Map;
+import com.example.jules.kugelspiel.Game;
 import com.example.jules.kugelspiel.R;
-
-import java.util.Timer;
-import java.util.TimerTask;
-
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FragmentGame extends Fragment {
 
-    Map m;
-    ImageView iv;
+    DirectionManager dm;
+
     public FragmentGame() {
         // Required empty public constructor
     }
@@ -33,23 +32,19 @@ public class FragmentGame extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        boolean b=true;
-        final View view = inflater.inflate(R.layout.fragment_game, container, false);
 
-        iv = (ImageView) view.findViewById(R.id.imageView);
-        Log.d("test", "main");
-        m = new Map(2);
+        System.out.println("FragmentGame oncreate called");
+        View view = inflater.inflate(R.layout.fragment_game, container, false);
 
-        Timer timer = new Timer();
-        m.draw(iv);
-        timer.scheduleAtFixedRate(new TimerTask() {
-            @Override
-            public void run() {
-                //update Kugel
-                Log.d("fx","draw map");
-            }
+        ImageView mv = (ImageView) view.findViewById(R.id.mapView);
+        ImageView bv = (ImageView) view.findViewById(R.id.ballView);
+        Log.d("test","main");
 
-        }, 0, 1000 / 10);
+        Game g = new Game(mv, bv);
+        g.start();
+
+        //Map m=new Map(2);
+        //m.draw(iv);
 
         // Inflate the layout for this fragment
         return view;

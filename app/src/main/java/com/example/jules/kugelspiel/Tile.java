@@ -35,10 +35,6 @@ public class Tile {
             case Lava: return COLOR_LAVA ;
             default: System.out.print("Invalid Tiletype");
                 return COLOR_FLOOR;
-
         }
-
-
-
     }
 }
