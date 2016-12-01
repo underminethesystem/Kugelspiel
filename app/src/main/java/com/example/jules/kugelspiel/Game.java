@@ -29,18 +29,21 @@ public class Game {
 
     Map m;
     Ball b;
+
     public void start(){
+
         m = new Map(2);
         b = new Ball(10, 10);
         m.draw(mapView);
         b.draw(ballView);
 
         // TODO: redraw correctly
+        /*
         Timer t = new Timer();
         t.scheduleAtFixedRate(new TimerTask() {
         @Override
         public void run() {
-            ImageView iv = new ImageView(R.layout.activity_main);
+            ImageView iv = new ImageView();
             RelativeLayout rl = (RelativeLayout) findViewById(R.id.mapView);
             RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
                     RelativeLayout.LayoutParams.WRAP_CONTENT,
@@ -53,6 +56,7 @@ public class Game {
             }
         }
     }, 0, 1000 / 40);
+    */
 }
 
 }
