@@ -1,5 +1,6 @@
 package com.example.jules.kugelspiel;
 
+import android.app.Activity;
 import android.hardware.SensorManager;
 import android.media.Image;
 import android.widget.ImageView;
@@ -38,25 +39,34 @@ public class Game {
         b.draw(ballView);
 
         // TODO: redraw correctly
-        /*
-        Timer t = new Timer();
-        t.scheduleAtFixedRate(new TimerTask() {
-        @Override
-        public void run() {
-            ImageView iv = new ImageView();
-            RelativeLayout rl = (RelativeLayout) findViewById(R.id.mapView);
-            RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
-                    RelativeLayout.LayoutParams.WRAP_CONTENT,
-                    RelativeLayout.LayoutParams.WRAP_CONTENT);
-            rl.addView(iv, lp);
+        //Timer t = new Timer();
+        //t.scheduleAtFixedRate(new TimerTask() {
 
-            while (true) {
-                b.draw(ballView);
-                b.move();
+        MainActivity.act.runOnUiThread(new Runnable(){
+            @Override
+            public void run() {
+                /*ImageView iv = new ImageView();
+                RelativeLayout rl = (RelativeLayout) findViewById(R.id.mapView);
+                RelativeLayout.LayoutParams lp = new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT,
+                        RelativeLayout.LayoutParams.WRAP_CONTENT);
+                rl.addView(ballView, lp);
+    */
+                while (true){
+                    b.draw(ballView);
+                    b.move();
+                    dm.xDir += 1;
+                    dm.yDir += 1;
+                    try {
+                        Thread.sleep(100);
+                    } catch(InterruptedException ex){
+
+                    }
+                }
             }
         }
-    }, 0, 1000 / 40);
-    */
+        );
+    //}, 0, 1000 / 40);
 }
 
 }
