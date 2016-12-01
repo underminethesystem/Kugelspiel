@@ -42,6 +42,7 @@ public class FragmentMapselector extends Fragment implements View.OnClickListene
 
 
         }
+        fragmentTransaction.hide(this);
         fragmentTransaction.commit();
 
     }

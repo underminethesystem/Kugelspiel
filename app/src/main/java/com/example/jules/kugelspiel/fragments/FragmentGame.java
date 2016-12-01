@@ -14,12 +14,17 @@ import android.widget.ImageView;
 
 import com.example.jules.kugelspiel.Map;
 import com.example.jules.kugelspiel.R;
+
+import java.util.Timer;
+import java.util.TimerTask;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FragmentGame extends Fragment {
 
-
+    Map m;
+    ImageView iv;
     public FragmentGame() {
         // Required empty public constructor
     }
@@ -28,13 +33,23 @@ public class FragmentGame extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        boolean b=true;
+        final View view = inflater.inflate(R.layout.fragment_game, container, false);
 
-        View view = inflater.inflate(R.layout.fragment_game, container, false);
+        iv = (ImageView) view.findViewById(R.id.imageView);
+        Log.d("test", "main");
+        m = new Map(2);
 
-        ImageView iv= (ImageView) view.findViewById(R.id.imageView);
-        Log.d("test","main");
-        Map m=new Map(2);
+        Timer timer = new Timer();
         m.draw(iv);
+        timer.scheduleAtFixedRate(new TimerTask() {
+            @Override
+            public void run() {
+                //update Kugel
+                Log.d("fx","draw map");
+            }
+
+        }, 0, 1000 / 10);
 
         // Inflate the layout for this fragment
         return view;

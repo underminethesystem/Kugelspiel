@@ -155,7 +155,6 @@ public class Map {
     }
 
     public void draw(ImageView iv){
-        System.out.println("Map.draw called");
         Bitmap bitmap = Bitmap.createBitmap(tileSize*width, tileSize*height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
