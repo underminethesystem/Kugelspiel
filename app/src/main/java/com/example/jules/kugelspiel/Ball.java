@@ -12,10 +12,10 @@ import android.widget.ImageView;
 
 public class Ball {
 
-    public int x, y;
+    public float x, y;
 
     // TODO: start x and start y depending on map
-    public Ball(int _x, int _y){
+    public Ball(float _x, float _y){
         x = _x;
         y = _y;
     }
