@@ -38,9 +38,14 @@ public class MainActivity extends AppCompatActivity {
 
     public static SensorManager sm;
 
+    public static AppCompatActivity act;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        act = this;
+
         setContentView(R.layout.activity_main);
 
         FragmentManager fragmentManager = getSupportFragmentManager();
