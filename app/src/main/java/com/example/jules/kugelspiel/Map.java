@@ -173,7 +173,10 @@ public class Map {
         iv.setImageBitmap(bitmap);
     }
 
+    public Tile getTileAt(float x,float y){
+        return tiles[(int)x][(int)y];
 
+    }
 
 
 

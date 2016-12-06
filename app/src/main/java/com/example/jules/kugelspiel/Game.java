@@ -30,11 +30,11 @@ public class Game {
     public static int test=0;
     Map m;
     Ball b;
-    public static int FPS =20;
+    public static int FPS =60;
     public void start(){
 
         m = new Map(2);
-        b = new Ball(10, 10);
+        b = new Ball(10, 10,m);
         m.draw(mapView);
         b.draw(ballView);
         Timer timer = new Timer();

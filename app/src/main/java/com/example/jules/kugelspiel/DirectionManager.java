@@ -78,12 +78,13 @@ public class DirectionManager extends Thread implements SensorEventListener {
 
         y = event.values[0];
         x = event.values[1];
-        xDir=x/100;
-        yDir=y/100;
+        xDir=x/120;
+        yDir=y/120;
 
         //else it will output the Roll, Pitch and Yawn values
-        String ot = "(Pitch) :"+ Float.toString(y) +"\n"+
+        /*String ot = "(Pitch) :"+ Float.toString(y) +"\n"+
                     "(Yaw) :"+ Float.toString(z);
-        System.out.println(ot);
+        System.out.println(ot);*/
+       // System.out.println("Direction: "+xDir+"/"+yDir);
     }
 }
