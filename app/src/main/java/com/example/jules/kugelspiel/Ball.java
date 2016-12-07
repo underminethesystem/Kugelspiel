@@ -22,14 +22,14 @@ public class Ball {
         y = _y;
         map =m;
     }
-    public boolean collision(){
-        float r=0.5f;
-        float centerX= x+DirectionManager.xDir+0.5f;//simulate move
-        float centerY= y+DirectionManager.yDir+ 0.5f;
+    public boolean isCollision(float x,float y){
+        float r=0.4f;
+        float centerX= x+0.4f;
+        float centerY= y+0.4f;
         for(int i=0;i<COLLISION_CHECK_AMOUNT;i++){
             float xPos= r*(float)Math.cos(Math.toRadians(360/COLLISION_CHECK_AMOUNT*i))+centerX;
             float yPos= r*(float)Math.sin(Math.toRadians(360/COLLISION_CHECK_AMOUNT*i))+centerY;
-            if (!map.getTileAt(xPos,yPos).isWalkable){
+            if (!map.getTileAt(xPos-0.5f,yPos-0.5f).isWalkable){
                 //System.out.println("Collision detected at X:"+xPos+" Y: "+yPos);
                 return true;
             }
@@ -37,9 +37,17 @@ public class Ball {
         return false;
     }
     public void move() {
-        if (collision()) {//would collide next frame TODO: move ball to wall as close as possible and/or roll along wall
-            //probably set either xDir,yDir or both(corner) to 0 to move along wall
-           // System.out.println("Collision detected");
+        if (isCollision(x+DirectionManager.xDir,y+DirectionManager.yDir)) {
+            //move along wall
+            float newXDir=DirectionManager.xDir;
+            float newYDir=DirectionManager.yDir;
+
+            if(isCollision(x+DirectionManager.xDir,y))
+                newXDir=0;
+            if(isCollision(x,y+DirectionManager.yDir))
+                newYDir=0;
+            x+=newXDir;
+            y+=newYDir;
         } else {
             x += DirectionManager.xDir;
             y += DirectionManager.yDir;
@@ -61,7 +69,7 @@ public class Ball {
         paint.setStrokeWidth(1);
         paint.setColor(c);
         paint.setStyle(Paint.Style.FILL);
-        canvas.drawOval(x*Map.tileSize,y*Map.tileSize,(x+1)*Map.tileSize,(y+1)*Map.tileSize,paint);
+        canvas.drawCircle(x*Map.tileSize,y*Map.tileSize,Map.tileSize*0.4f,paint);
         iv.setImageBitmap(bitmap);
         iv.bringToFront();
     }
