@@ -13,8 +13,10 @@ import android.widget.ImageView;
 public class Ball {
 
     public float x, y;
+    public float currDirX;
+    public float currDirY;
     public Map map;
-    public static int COLLISION_CHECK_AMOUNT=20; //amt of points to check on ball
+    public static int COLLISION_CHECK_AMOUNT=100; //amt of points to check on ball
 
     // TODO: start x and start y depending on map
     public Ball(float _x, float _y,Map m){
@@ -37,20 +39,32 @@ public class Ball {
         return false;
     }
     public void move() {
-        if (isCollision(x+DirectionManager.xDir,y+DirectionManager.yDir)) {
-            //move along wall
-            float newXDir=DirectionManager.xDir;
-            float newYDir=DirectionManager.yDir;
+        currDirX=currDirX+DirectionManager.xDir*0.02f;
+        if(currDirX>DirectionManager.xDir&& DirectionManager.xDir>0)
+         currDirX=DirectionManager.xDir;
+        if(currDirX<DirectionManager.xDir&& DirectionManager.xDir<0)
+            currDirX=DirectionManager.xDir;
 
-            if(isCollision(x+DirectionManager.xDir,y))
-                newXDir=0;
-            if(isCollision(x,y+DirectionManager.yDir))
-                newYDir=0;
-            x+=newXDir;
-            y+=newYDir;
+        currDirY=currDirY+DirectionManager.yDir*0.1f;
+        if(currDirY>DirectionManager.yDir&& DirectionManager.yDir>0)
+            currDirY=DirectionManager.yDir;
+        if(currDirY<DirectionManager.yDir&& DirectionManager.yDir<0)
+            currDirY=DirectionManager.yDir;
+
+        if (isCollision(x+currDirX,y+currDirY)) {
+            //move along wall
+            float newXDir=currDirX;
+            float newYDir=currDirY;
+
+            if(isCollision(x+currDirX,y))
+                currDirX=0;
+            if(isCollision(x,y+currDirY))
+                currDirY=0;
+            x += currDirX;
+            y += currDirY;
         } else {
-            x += DirectionManager.xDir;
-            y += DirectionManager.yDir;
+            x += currDirX;
+            y += currDirY;
         }
         if(map.getTileAt(x,y).type== Tile.TileType.Goal){
             for (int i=0;i<10;i++)
