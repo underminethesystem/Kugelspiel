@@ -21,14 +21,11 @@ import static android.R.attr.id;
 //}
 //}
 
-import android.app.Activity;
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
 
 import com.example.jules.kugelspiel.fragments.FragmentMenu;
 
@@ -58,4 +55,22 @@ public class MainActivity extends AppCompatActivity {
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
         //dm = new DirectionManager((SensorManager) getSystemService(SENSOR_SERVICE));
     }
+
+    /*
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (Game.dm != null) {
+            Game.dm.onPause();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Game.dm != null) {
+            Game.dm.onResume();
+        }
+    }
+    */
 }

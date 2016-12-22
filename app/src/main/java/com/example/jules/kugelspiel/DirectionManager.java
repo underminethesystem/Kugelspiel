@@ -32,7 +32,7 @@ public class DirectionManager extends Thread implements SensorEventListener {
 
     // should start RIGHT BEFORE game is started
     // won't need Acc before that
-    protected void onResume()
+    public void onResume()
     {
         /*register the sensor listener to listen to the gyroscope sensor, use the
         callbacks defined in this class, and gather the sensor information as quick
@@ -42,10 +42,14 @@ public class DirectionManager extends Thread implements SensorEventListener {
                         Sensor.TYPE_ACCELEROMETER),SensorManager.SENSOR_DELAY_NORMAL);
     }
 
-    protected void onStop()
-    {
-        sManager.unregisterListener(this);
-    }
+    public void onPause() { sManager.unregisterListener(this);}
+
+
+    //public void onStop()
+    //{
+    //    sManager.unregisterListener(this);
+    //}
+
 
     @Override
     public void onAccuracyChanged(Sensor arg0, int arg1)
@@ -85,6 +89,6 @@ public class DirectionManager extends Thread implements SensorEventListener {
         /*String ot = "(Pitch) :"+ Float.toString(y) +"\n"+
                     "(Yaw) :"+ Float.toString(z);
         System.out.println(ot);*/
-       // System.out.println("Direction: "+xDir+"/"+yDir);
+        System.out.println("Direction: "+xDir+"/"+yDir);
     }
 }

@@ -26,7 +26,7 @@ public class Game {
         dm = new DirectionManager(MainActivity.sm);
     }
 
-    public DirectionManager dm;
+    public static DirectionManager dm;
     public static int test=0;
     Map m;
     Ball b;

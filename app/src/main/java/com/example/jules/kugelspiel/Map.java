@@ -97,8 +97,8 @@ public class Map {
                 int[] viewCoords = new int[2];
                 iv.getLocationOnScreen(viewCoords);
 
-                int xTouch=(Math.round(event.getX()+viewCoords[0]))/36;//WHY not 40?
-                int yTouch=(Math.round(event.getY()+viewCoords[1]))/36;
+                int xTouch=(Math.round(event.getX()+viewCoords[0]))/40;//WHY not 40?
+                int yTouch=(Math.round(event.getY()+viewCoords[1]))/40;
                 Log.v("test","Viewcoords"+viewCoords[0]+"/"+viewCoords[1]);
                 Log.v("test","X: "+event.getX()/40+" Touch X: "+xTouch+"\nY: "+event.getY()/40
                         +"Touch Y: "+yTouch+"  hit "+getTileAt(xTouch,yTouch).type

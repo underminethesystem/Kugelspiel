@@ -22,13 +22,10 @@ import com.example.jules.kugelspiel.R;
  */
 public class FragmentGame extends Fragment {
 
-    DirectionManager dm;
-
     public FragmentGame() {
         // Required empty public constructor
     }
 
-    View view;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -50,4 +47,19 @@ public class FragmentGame extends Fragment {
         return view;
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        if (Game.dm != null) {
+            Game.dm.onPause();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if (Game.dm != null) {
+            Game.dm.onResume();
+        }
+    }
 }
