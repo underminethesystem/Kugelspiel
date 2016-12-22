@@ -6,6 +6,8 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.widget.ImageView;
 
+import java.util.Random;
+
 /**
  * Created by jules on 18.11.2016.
  */
@@ -31,7 +33,7 @@ public class Ball {
         for(int i=0;i<COLLISION_CHECK_AMOUNT;i++){
             float xPos= r*(float)Math.cos(Math.toRadians(360/COLLISION_CHECK_AMOUNT*i))+centerX;
             float yPos= r*(float)Math.sin(Math.toRadians(360/COLLISION_CHECK_AMOUNT*i))+centerY;
-            if (!map.getTileAt(xPos-0.5f,yPos-0.5f).isWalkable){
+            if (map.getTileAt(xPos-0.5f,yPos-0.5f).type==Tile.TileType.Wall){
                 //System.out.println("Collision detected at X:"+xPos+" Y: "+yPos);
                 return true;
             }
@@ -39,13 +41,13 @@ public class Ball {
         return false;
     }
     public void move() {
-        currDirX=currDirX+DirectionManager.xDir*0.02f;
+        currDirX=currDirX+DirectionManager.xDir*Game.FPS/10000;
         if(currDirX>DirectionManager.xDir&& DirectionManager.xDir>0)
          currDirX=DirectionManager.xDir;
         if(currDirX<DirectionManager.xDir&& DirectionManager.xDir<0)
             currDirX=DirectionManager.xDir;
 
-        currDirY=currDirY+DirectionManager.yDir*0.1f;
+        currDirY=currDirY+DirectionManager.yDir*Game.FPS/10000;
         if(currDirY>DirectionManager.yDir&& DirectionManager.yDir>0)
             currDirY=DirectionManager.yDir;
         if(currDirY<DirectionManager.yDir&& DirectionManager.yDir<0)
@@ -53,9 +55,6 @@ public class Ball {
 
         if (isCollision(x+currDirX,y+currDirY)) {
             //move along wall
-            float newXDir=currDirX;
-            float newYDir=currDirY;
-
             if(isCollision(x+currDirX,y))
                 currDirX=0;
             if(isCollision(x,y+currDirY))

@@ -1,6 +1,7 @@
 package com.example.jules.kugelspiel;
 
 import android.graphics.Color;
+import android.util.Log;
 
 /**
  * Created by User on 27.10.2016.
@@ -25,7 +26,26 @@ public class Tile {
 
     public TileType type;
     public boolean isWalkable;
+    public void toggle(){
+        switch(type){
+            case Floor: type=TileType.Wall;
+                break;
+            case Wall:type=TileType.Lava;
+                break;
+            case Start:
+                break;
+            case Goal:
+                break;
+            case Lava: type=TileType.Floor;
+                break;
+            default:
+                Log.v("error","invalid type");
+                break;
 
+        }
+
+
+    }
     public int getColor(){
         switch (type){
             case Floor: return COLOR_FLOOR ;

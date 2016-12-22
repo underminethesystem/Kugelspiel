@@ -33,9 +33,9 @@ public class Game {
     public static int FPS =60;
     public void start(){
 
-        m = new Map(2);
+        m = new Map(2,mapView);
         b = new Ball(10, 10,m);
-        m.draw(mapView);
+        m.draw();
         b.draw(ballView);
         Timer timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {

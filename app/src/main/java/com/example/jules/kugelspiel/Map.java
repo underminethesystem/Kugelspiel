@@ -5,6 +5,9 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.provider.Settings;
+import android.util.Log;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
 
 /**
@@ -81,11 +84,30 @@ public class Map {
 
     };
     public Tile[][] tiles;
+    public ImageView iv;
     public static int width =50;
     public static int height =30;
     public static int tileSize=40;
 
-    public Map(int index) {
+    public Map(int index,ImageView _iv) {
+        iv=_iv;
+        iv.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int[] viewCoords = new int[2];
+                iv.getLocationOnScreen(viewCoords);
+
+                int xTouch=(Math.round(event.getX()+viewCoords[0]))/36;//WHY not 40?
+                int yTouch=(Math.round(event.getY()+viewCoords[1]))/36;
+                Log.v("test","Viewcoords"+viewCoords[0]+"/"+viewCoords[1]);
+                Log.v("test","X: "+event.getX()/40+" Touch X: "+xTouch+"\nY: "+event.getY()/40
+                        +"Touch Y: "+yTouch+"  hit "+getTileAt(xTouch,yTouch).type
+                        +"\nRawX: "+event.getRawX()+"  RawY:"+event.getRawY());
+                getTileAt(xTouch,yTouch).toggle();
+                draw();
+                return true;
+            }
+        });
         switch(index) {
             case 1://static Map 1 etc
                 tiles=new Tile[width][height];
@@ -153,7 +175,8 @@ public class Map {
         }
     }
 
-    public void draw(ImageView iv){
+
+    public void draw(){
         Bitmap bitmap = Bitmap.createBitmap(tileSize*width, tileSize*height, Bitmap.Config.ARGB_8888);
         Canvas canvas = new Canvas(bitmap);
         Paint paint = new Paint();
@@ -177,7 +200,10 @@ public class Map {
         return tiles[(int)x][(int)y];
 
     }
+    public Tile getTileAt(int x,int y){
+        return tiles[x][y];
 
+    }
 
 
 
