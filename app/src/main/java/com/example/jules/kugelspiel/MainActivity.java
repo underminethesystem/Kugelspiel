@@ -26,8 +26,14 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
+import com.example.jules.kugelspiel.database.DataSource;
+import com.example.jules.kugelspiel.database.Highscore;
 import com.example.jules.kugelspiel.fragments.FragmentMenu;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -36,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
     public static SensorManager sm;
 
     public static AppCompatActivity act;
+
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
