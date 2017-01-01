@@ -21,6 +21,7 @@ import com.example.jules.kugelspiel.R;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentGame extends Fragment {
+    private int map;
 
     public FragmentGame() {
         // Required empty public constructor

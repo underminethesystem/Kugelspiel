@@ -8,11 +8,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import com.example.jules.kugelspiel.R;
 import com.example.jules.kugelspiel.database.DataSource;
 import com.example.jules.kugelspiel.database.Highscore;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,23 +32,28 @@ public class FragmentHighscore extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         dataSource = new DataSource(this.getActivity());
-        v = inflater.inflate(R.layout.fragment_highscore, container, false);
+        View view = inflater.inflate(R.layout.fragment_highscore, container, false);
         dataSource.open();
-        Highscore high = dataSource.createHighscore("TEST", 1);
 
         List<Highscore> highScoreList = dataSource.getAllHighscores();
+        for(Highscore high : highScoreList) {
+            dataSource.deleteHighscore(high);
+        }
+        dataSource.createHighscore("Hallo",1,1);
+        dataSource.createHighscore("Hallo",2,2);
+        dataSource.createHighscore("Hallo",3,3);
 
         ArrayAdapter<Highscore> highScoreArrayAdapter = new ArrayAdapter<>(
                 this.getContext(),
                 android.R.layout.simple_list_item_1,
                 highScoreList);
 
-        ListView highs = (ListView) v.findViewById(R.id.lvHigh);
+        ListView highs = (ListView) view.findViewById(R.id.listView);
         highs.setAdapter(highScoreArrayAdapter);
 
         dataSource.close();
 
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_highscore, container, false);
+        return view;
     }
 }

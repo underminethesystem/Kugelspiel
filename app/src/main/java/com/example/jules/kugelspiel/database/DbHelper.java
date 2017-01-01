@@ -15,15 +15,33 @@ public class DbHelper extends SQLiteOpenHelper{
     public static final int DB_VERSION = 1;
 
     public static final String TABLE_HIGHSCORE = "highscore";
-    public static final String COLUMN_ID = "_id";
+
     public static final String COLUMN_NAME = "name";
     public static final String COLUMN_SECONDS = "seconds";
+    public static final String COLUMN_RANK = "rank";
+
+    public static final String TABLE_MAP = "map";
+    public static final String COLUMN_SERIALIZEDMAP = "serializedmap";
+
+    public static final String COLUMN_ID = "_id";
 
     public static final String SQL_CREATE =
             "CREATE TABLE " + TABLE_HIGHSCORE +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_NAME + " TEXT NOT NULL, " +
+                    COLUMN_RANK + " INTEGER NOT NULL, " +
                     COLUMN_SECONDS + " INTEGER NOT NULL);";
+
+    public static final String SQL_CREATE_MAP =
+            "CREATE TABLE " + TABLE_MAP +
+                    "(" + COLUMN_ID + " INTEGER PRIMARY KEY, " +
+                    COLUMN_SERIALIZEDMAP + " STRING NOT NULL);";
+
+    public static final String SQL_DELETE =
+            "DROP TABLE " + TABLE_HIGHSCORE + ";";
+
+    public static final String SQL_DELETE_MAP =
+            "DROP TABLE " + TABLE_MAP + ";";
 
 
     public DbHelper(Context context) {
@@ -33,14 +51,12 @@ public class DbHelper extends SQLiteOpenHelper{
     @Override
     public void onCreate(SQLiteDatabase db) {
         try {
+            db.execSQL(SQL_CREATE_MAP);
             db.execSQL(SQL_CREATE);
         }
         catch (Exception ex) {
             Log.e("DbHelper", "Fehler beim Anlegen der Tabelle: " + ex.getMessage());
         }
-
-
-
     }
 
     @Override

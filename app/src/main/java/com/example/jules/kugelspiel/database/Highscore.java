@@ -8,11 +8,13 @@ public class Highscore {
     private int seconds;
     private String name;
     private int id;
+    private int rank;
 
-    public Highscore(String name, int seconds, int id) {
+    public Highscore(String name, int seconds, int rank, int id) {
         this.seconds = seconds;
         this.name = name;
         this.id = id;
+        this.rank = rank;
     }
 
     public String getName(){
@@ -39,8 +41,20 @@ public class Highscore {
         this.id = id;
     }
 
+    public int getRank() { return this.rank;}
+
+    public void setRank(int rank) { this.rank = rank;}
+
     @Override
     public String toString() {
-        return this.name;
+        StringBuilder sb = new StringBuilder();
+        sb.append("");
+        sb.append(this.rank);
+        sb.append(".     ");
+        sb.append(this.seconds);
+        sb.append("      ");
+        sb.append(this.name);
+
+        return sb.toString() ;
     }
 }
