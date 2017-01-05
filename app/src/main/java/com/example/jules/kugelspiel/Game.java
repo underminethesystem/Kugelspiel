@@ -20,9 +20,12 @@ public class Game {
     ImageView mapView;
     ImageView ballView;
 
-    public Game(ImageView _map, ImageView _ball){
+    GameMap currentMap;
+
+    public Game(ImageView _map, ImageView _ball, GameMap _currentMap){
         mapView = _map;
         ballView = _ball;
+        currentMap = _currentMap;
         dm = new DirectionManager(MainActivity.sm);
     }
 
@@ -33,7 +36,7 @@ public class Game {
     public static int FPS =60;
     public void start(){
 
-        m = new Map(2,mapView);
+        m = new Map(2,mapView,currentMap);
         b = new Ball(10, 10,m);
         m.draw();
         b.draw(ballView);

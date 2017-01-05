@@ -7,16 +7,17 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 
-import com.example.jules.kugelspiel.DirectionManager;
-import com.example.jules.kugelspiel.MainActivity;
-import com.example.jules.kugelspiel.Map;
+import com.example.jules.kugelspiel.GameMap;
 import com.example.jules.kugelspiel.Game;
+import com.example.jules.kugelspiel.ObjectDecoder;
 import com.example.jules.kugelspiel.R;
+import com.example.jules.kugelspiel.database.DataSource;
+
+import java.io.IOException;
+
 /**
  * A simple {@link Fragment} subclass.
  */
@@ -38,7 +39,20 @@ public class FragmentGame extends Fragment {
         ImageView bv = (ImageView) view.findViewById(R.id.ballView);
         Log.d("test","main");
 
-        Game g = new Game(mv, bv);
+        ObjectDecoder oj = new ObjectDecoder();
+
+        // init current map to some default map
+        GameMap selectedMap = null;
+        DataSource ds = new DataSource(this.getActivity());
+        ds.open();
+        try {
+            // TODO: implement actual selected map gedöns
+            selectedMap = (GameMap) oj.fromString(ds.getAllMaps().get(0).getSerializedMap());
+        } catch (ClassNotFoundException | IOException e) {}
+        ds.close();
+
+
+        Game g = new Game(mv, bv, selectedMap);
         g.start();
 
         //Map m=new Map(2);

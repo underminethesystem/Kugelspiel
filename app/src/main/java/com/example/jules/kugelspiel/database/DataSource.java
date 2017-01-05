@@ -20,7 +20,7 @@ public class DataSource {
     private SQLiteDatabase database;
     private DbHelper dbHelper;
 
-    private String[] columns = {
+    static public String[] columns = {
             DbHelper.COLUMN_ID,
             DbHelper.COLUMN_NAME,
             DbHelper.COLUMN_SECONDS,
@@ -34,6 +34,7 @@ public class DataSource {
 
 
     public DataSource(Context context) {
+
         dbHelper = new DbHelper(context);
     }
 
@@ -124,7 +125,7 @@ public class DataSource {
         long insertId = database.insert(DbHelper.TABLE_MAP, null, values);
 
         Cursor cursor = database.query(DbHelper.TABLE_MAP,
-                columns, DbHelper.COLUMN_ID + "=" + insertId,
+                columns_map, DbHelper.COLUMN_ID + "=" + insertId,
                 null, null, null, null);
 
         cursor.moveToFirst();
@@ -150,7 +151,7 @@ public class DataSource {
         List<Map> maps = new ArrayList<>();
 
         Cursor cursor = database.query(DbHelper.TABLE_MAP,
-                columns, null, null, null, null, dbHelper.COLUMN_RANK + " ASC");
+                columns_map, null, null, null, null, null /*dbHelper.COLUMN_RANK + " ASC"*/);
 
         cursor.moveToFirst();
         Map map;

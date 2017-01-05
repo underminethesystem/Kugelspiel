@@ -50,7 +50,9 @@ public class DbHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
+        System.out.println("DATABASE ONCREATE CALLED");
         try {
+            db.execSQL(SQL_DELETE_MAP);
             db.execSQL(SQL_CREATE_MAP);
             db.execSQL(SQL_CREATE);
         }

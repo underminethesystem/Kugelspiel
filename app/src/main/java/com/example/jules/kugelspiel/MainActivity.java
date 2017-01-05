@@ -1,39 +1,16 @@
 package com.example.jules.kugelspiel;
-//
-//      import android.support.v7.app.AppCompatActivity;
-//      import android.os.Bundle;
-//      import android.util.Log;
-//      import android.widget.ImageView;
-
-import static android.R.attr.id;
-
-//public class MainActivity extends AppCompatActivity {
-//
-//    @Override
-//  protected void onCreate(Bundle savedInstanceState) {
-//super.onCreate(savedInstanceState);
-//setContentView(R.layout.activity_main);
-
-//ImageView iv= (ImageView) findViewById(R.id.imageView);
-//Log.d("test","main");
-//Map m=new Map(2);
-//m.draw(iv);
-//}
-//}
 
 import android.hardware.SensorManager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 
 import com.example.jules.kugelspiel.database.DataSource;
-import com.example.jules.kugelspiel.database.Highscore;
 import com.example.jules.kugelspiel.fragments.FragmentMenu;
 
-import java.util.List;
+import java.io.IOException;
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -43,14 +20,29 @@ public class MainActivity extends AppCompatActivity {
 
     public static AppCompatActivity act;
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
         act = this;
+
+        DataSource ds = new DataSource(this);
+
+        MapArchive ma = new MapArchive();
+        ArrayList<GameMap> mapList = ma.getMapList();
+        ObjectDecoder oj = new ObjectDecoder();
+
+        ds.open();
+        // TODO: durch vergleich "maparchive.size mit database.size" ersetzen
+        // TODO: create maps neu wenn sich zahl unterscheidet
+        if (ds.getAllMaps().size() == 0 ){
+            try {
+                for (GameMap m: mapList){
+                    ds.createMap(oj.toString(m));
+                }
+            }catch(IOException e){}
+        }
+        ds.close();
 
         setContentView(R.layout.activity_main);
 
@@ -62,7 +54,6 @@ public class MainActivity extends AppCompatActivity {
         status = true;
 
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
-        //dm = new DirectionManager((SensorManager) getSystemService(SENSOR_SERVICE));
     }
 
     /*
