@@ -34,7 +34,6 @@ public class DataSource {
 
 
     public DataSource(Context context) {
-
         dbHelper = new DbHelper(context);
     }
 
@@ -119,6 +118,7 @@ public class DataSource {
     }
 
     public Map createMap(String serializedMap) {
+        dbHelper.consistencyCheck(database);
         ContentValues values = new ContentValues();
         values.put(DbHelper.COLUMN_SERIALIZEDMAP, serializedMap);
 
@@ -148,6 +148,7 @@ public class DataSource {
     }
 
     public List<Map> getAllMaps() {
+        dbHelper.consistencyCheck(database);
         List<Map> maps = new ArrayList<>();
 
         Cursor cursor = database.query(DbHelper.TABLE_MAP,

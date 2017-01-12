@@ -32,8 +32,20 @@ public class DbHelper extends SQLiteOpenHelper{
                     COLUMN_RANK + " INTEGER NOT NULL, " +
                     COLUMN_SECONDS + " INTEGER NOT NULL);";
 
+    public static final String SQL_CREATE_IF_NOT_EXISTS =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_HIGHSCORE +
+                    "(" + COLUMN_ID + " INTEGER PRIMARY KEY, " +
+                    COLUMN_NAME + " TEXT NOT NULL, " +
+                    COLUMN_RANK + " INTEGER NOT NULL, " +
+                    COLUMN_SECONDS + " INTEGER NOT NULL);";
+
     public static final String SQL_CREATE_MAP =
             "CREATE TABLE " + TABLE_MAP +
+                    "(" + COLUMN_ID + " INTEGER PRIMARY KEY, " +
+                    COLUMN_SERIALIZEDMAP + " STRING NOT NULL);";
+
+    public static final String SQL_CREATE_MAP_IF_NOT_EXISTS =
+            "CREATE TABLE IF NOT EXISTS " + TABLE_MAP +
                     "(" + COLUMN_ID + " INTEGER PRIMARY KEY, " +
                     COLUMN_SERIALIZEDMAP + " STRING NOT NULL);";
 
@@ -48,11 +60,16 @@ public class DbHelper extends SQLiteOpenHelper{
         super(context, DB_NAME , null, 1);
     }
 
+    public void consistencyCheck(SQLiteDatabase db){
+        db.execSQL(SQL_CREATE_IF_NOT_EXISTS);
+        db.execSQL(SQL_CREATE_MAP_IF_NOT_EXISTS);
+    }
+
     @Override
     public void onCreate(SQLiteDatabase db) {
         System.out.println("DATABASE ONCREATE CALLED");
         try {
-            db.execSQL(SQL_DELETE_MAP);
+            //db.execSQL(SQL_DELETE_MAP);
             System.out.println("SHOULD'VE CREATED MAP");
             db.execSQL(SQL_CREATE_MAP);
             db.execSQL(SQL_CREATE);

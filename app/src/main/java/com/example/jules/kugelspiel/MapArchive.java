@@ -220,6 +220,10 @@ public class MapArchive {
 
         mapList.add(new GameMap(map1));
         mapList.add(new GameMap(map2));
+        mapList.add(new GameMap(map3));
+        mapList.add(new GameMap(map4));
+        mapList.add(new GameMap(map5));
+        mapList.add(new GameMap(map6));
 
         return mapList;
     }
