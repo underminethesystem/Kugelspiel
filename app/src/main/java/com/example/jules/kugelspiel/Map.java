@@ -39,7 +39,7 @@ public class Map {
         currentMap = gm;
 
         iv=_iv;
-        iv.setOnTouchListener(new View.OnTouchListener() {
+        /*iv.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 int[] viewCoords = new int[2];
@@ -55,7 +55,7 @@ public class Map {
                 draw();
                 return true;
             }
-        });
+        });*/
         switch(index) {
             case 1://static Map 1 etc
                 tiles=new Tile[width][height];
