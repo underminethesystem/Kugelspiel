@@ -48,7 +48,7 @@ public class FragmentGame extends Fragment {
         } catch (ClassNotFoundException | IOException e) {}
         ds.close();
 
-        Game g = new Game(mv, bv, selectedMap);
+        Game g = new Game(mv, bv);
         g.start();
 
         // Inflate the layout for this fragment
