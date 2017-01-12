@@ -10,20 +10,15 @@ import android.os.StrictMode;
  * Created by jules on 17.11.2016.
  */
 
-
-// TODO: multithreading and unmake this an activity
 public class DirectionManager extends Thread implements SensorEventListener {
-//    public class DirectionManager extends AppCompatActivity implements SensorEventListener {
     private SensorManager sManager;
 
     public static float yDir;
     public static float xDir;
     public float y;
     public float x;
-    public float z;
 
-    public DirectionManager(SensorManager sm)
-    {
+    public DirectionManager(SensorManager sm) {
         sManager = sm;
         sManager.registerListener(
                 this, sManager.getDefaultSensor(
@@ -32,8 +27,7 @@ public class DirectionManager extends Thread implements SensorEventListener {
 
     // should start RIGHT BEFORE game is started
     // won't need Acc before that
-    public void onResume()
-    {
+    public void onResume() {
         /*register the sensor listener to listen to the gyroscope sensor, use the
         callbacks defined in this class, and gather the sensor information as quick
         as possible*/
@@ -44,16 +38,13 @@ public class DirectionManager extends Thread implements SensorEventListener {
 
     public void onPause() { sManager.unregisterListener(this);}
 
-
-    //public void onStop()
-    //{
-    //    sManager.unregisterListener(this);
-    //}
+    public void onStop() {
+        sManager.unregisterListener(this);
+    }
 
 
     @Override
-    public void onAccuracyChanged(Sensor arg0, int arg1)
-    {
+    public void onAccuracyChanged(Sensor arg0, int arg1) {
         // TODO: Do nothing.
     }
 
@@ -64,10 +55,9 @@ public class DirectionManager extends Thread implements SensorEventListener {
             xDir=x;
             yDir=y;
             try {
-
                 Thread.sleep(100);
             } catch (InterruptedException e) {
-
+                System.out.println("[ERROR] Directionmanager.run() => InterruptedException");
             }
         }
     }
@@ -89,6 +79,6 @@ public class DirectionManager extends Thread implements SensorEventListener {
         /*String ot = "(Pitch) :"+ Float.toString(y) +"\n"+
                     "(Yaw) :"+ Float.toString(z);
         System.out.println(ot);*/
-        System.out.println("Direction: "+xDir+"/"+yDir);
+        //System.out.println("Direction: "+xDir+"/"+yDir);
     }
 }

@@ -21,29 +21,15 @@ public class MainActivity extends AppCompatActivity {
 
     public static AppCompatActivity act;
 
+    public static DataSource ds;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+        //getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
         act = this;
 
-        DataSource ds = new DataSource(this);
 
-        MapArchive ma = new MapArchive();
-        ArrayList<GameMap> mapList = ma.getMapList();
-        ObjectDecoder oj = new ObjectDecoder();
-
-        ds.open();
-        // TODO: durch vergleich "maparchive.size mit database.size" ersetzen
-        // TODO: create maps neu wenn sich zahl unterscheidet
-        if (ds.getAllMaps().size() == 0 ){
-            try {
-                for (GameMap m: mapList){
-                    ds.createMap(oj.toString(m));
-                }
-            }catch(IOException e){}
-        }
-        ds.close();
 
         setContentView(R.layout.activity_main);
 
@@ -54,24 +40,24 @@ public class MainActivity extends AppCompatActivity {
         fragmentTransaction.commit();
         status = true;
 
+        ds = new DataSource(this);
+
+        MapArchive ma = new MapArchive();
+        ArrayList<GameMap> mapList = ma.getMapList();
+        ObjectDecoder oj = new ObjectDecoder();
+
+        ds.open();
+        if (ds.getAllMaps().size() != ma.getMapCount() ){
+            try {
+                for (GameMap m: mapList){
+                    ds.createMap(oj.toString(m));
+                }
+            } catch(IOException e){
+
+            }
+        }
+        ds.close();
+
         sm = (SensorManager) getSystemService(SENSOR_SERVICE);
     }
-
-    /*
-    @Override
-    public void onPause() {
-        super.onPause();
-        if (Game.dm != null) {
-            Game.dm.onPause();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        if (Game.dm != null) {
-            Game.dm.onResume();
-        }
-    }
-    */
 }

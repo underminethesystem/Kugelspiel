@@ -10,11 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.example.jules.kugelspiel.MainActivity;
 import com.example.jules.kugelspiel.R;
 import com.example.jules.kugelspiel.database.DataSource;
 import com.example.jules.kugelspiel.database.Map;
@@ -22,12 +22,14 @@ import com.example.jules.kugelspiel.database.Map;
 import java.util.ArrayList;
 import java.util.List;
 
+import static android.R.attr.data;
+import static android.R.attr.fragment;
+
 /**
  * A simple {@link Fragment} subclass.
  */
 public class FragmentMapselector extends Fragment implements View.OnClickListener{
     View view;
-    private DataSource dataSource;
     public FragmentMapselector() {
         // Required empty public constructor
     }
@@ -58,9 +60,9 @@ public class FragmentMapselector extends Fragment implements View.OnClickListene
         }
         View view = inflater.inflate(R.layout.fragment_mapselector, container, false);
 
-        List<Map> mapList = new ArrayList<>();//dataSource.getAllMaps();
-        mapList.add(new Map(1," "));
-        mapList.add(new Map(2," "));
+        MainActivity.ds.open();
+        List<Map> mapList = MainActivity.ds.getAllMaps();
+        MainActivity.ds.close();
 
         LinearLayout ll = (LinearLayout) view.findViewById(R.id.ll);
 
@@ -75,14 +77,16 @@ public class FragmentMapselector extends Fragment implements View.OnClickListene
             ll.addView(button);
         }
 
-        //RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-        //params.addRule(RelativeLayout.ALIGN_PARENT_END);
-        //params.addRule(RelativeLayout.ALIGN_PARENT_START);
-        //rl.setLayoutParams(params);
+        RelativeLayout.LayoutParams params =
+                new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+        params.addRule(RelativeLayout.ALIGN_PARENT_END);
+        params.addRule(RelativeLayout.ALIGN_PARENT_START);
+        //ll.setLayoutParams(params);
 
         //Button bnMap1 = (Button) view.findViewById(R.id.map1);
         //bnMap1.setOnClickListener(this);
-        // Inflate the layout for this fragment
+        //Inflate the layout for this fragment
         return view;
 
 

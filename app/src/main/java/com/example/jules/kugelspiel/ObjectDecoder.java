@@ -14,6 +14,8 @@ import java.io.Serializable;
  */
 
 public class ObjectDecoder {
+
+    // usage TODO: test this class
     /*
     public static void main( String [] args )  throws IOException,
 
@@ -27,22 +29,20 @@ public class ObjectDecoder {
     }
     */
 
-    /** Read the object from Base64 string. */
-    public Object fromString( String s ) throws IOException ,
-            ClassNotFoundException {
-        byte [] data = Base64.decode( s, Base64.DEFAULT );
-        ObjectInputStream ois = new ObjectInputStream(
-                new ByteArrayInputStream(  data ) );
-        Object o  = ois.readObject();
+    // Read the object from Base64 string.
+    public Object fromString(String s) throws IOException, ClassNotFoundException {
+        byte [] data = Base64.decode(s, Base64.DEFAULT);
+        ObjectInputStream ois = new ObjectInputStream( new ByteArrayInputStream(data));
+        Object o = ois.readObject();
         ois.close();
         return o;
     }
 
-    /** Write the object to a Base64 string. */
+    // Write the object to a Base64 string.
     public String toString( Serializable o ) throws IOException {
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        ObjectOutputStream oos = new ObjectOutputStream( baos );
-        oos.writeObject( o );
+        ObjectOutputStream oos = new ObjectOutputStream(baos);
+        oos.writeObject(o);
         oos.close();
         return Base64.encodeToString(baos.toByteArray(), Base64.DEFAULT);
     }

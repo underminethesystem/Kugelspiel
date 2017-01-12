@@ -11,7 +11,7 @@ import android.util.Log;
 
 public class DbHelper extends SQLiteOpenHelper{
 
-    public static final String DB_NAME = "Kugelspiel.db";
+    public static final String DB_NAME = "Kugel_Spiel.db";
     public static final int DB_VERSION = 1;
 
     public static final String TABLE_HIGHSCORE = "highscore";
@@ -53,6 +53,7 @@ public class DbHelper extends SQLiteOpenHelper{
         System.out.println("DATABASE ONCREATE CALLED");
         try {
             db.execSQL(SQL_DELETE_MAP);
+            System.out.println("SHOULD'VE CREATED MAP");
             db.execSQL(SQL_CREATE_MAP);
             db.execSQL(SQL_CREATE);
         }

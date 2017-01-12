@@ -9,11 +9,6 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.example.jules.kugelspiel.database.DataSource;
-
-import java.io.IOException;
-import java.io.Serializable;
-
 /**
  * Created by User on 27.10.2016.
  */

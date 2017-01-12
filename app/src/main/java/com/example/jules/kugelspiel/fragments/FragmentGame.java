@@ -22,8 +22,6 @@ import java.io.IOException;
  * A simple {@link Fragment} subclass.
  */
 public class FragmentGame extends Fragment {
-    private int map;
-
     public FragmentGame() {
         // Required empty public constructor
     }
@@ -32,7 +30,6 @@ public class FragmentGame extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        System.out.println("FragmentGame oncreate called");
         View view = inflater.inflate(R.layout.fragment_game, container, false);
 
         ImageView mv = (ImageView) view.findViewById(R.id.mapView);
@@ -51,12 +48,8 @@ public class FragmentGame extends Fragment {
         } catch (ClassNotFoundException | IOException e) {}
         ds.close();
 
-
         Game g = new Game(mv, bv, selectedMap);
         g.start();
-
-        //Map m=new Map(2);
-        //m.draw(iv);
 
         // Inflate the layout for this fragment
         return view;
@@ -75,6 +68,14 @@ public class FragmentGame extends Fragment {
         super.onResume();
         if (Game.dm != null) {
             Game.dm.onResume();
+        }
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        if (Game.dm != null) {
+            Game.dm.onStop();
         }
     }
 }

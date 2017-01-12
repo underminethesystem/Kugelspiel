@@ -41,11 +41,9 @@ public class Tile {
             default:
                 Log.v("error","invalid type");
                 break;
-
         }
-
-
     }
+
     public int getColor(){
         switch (type){
             case Floor: return COLOR_FLOOR ;
