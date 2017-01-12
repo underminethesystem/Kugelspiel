@@ -3,11 +3,15 @@ package com.example.jules.kugelspiel;
 import android.app.Activity;
 import android.hardware.SensorManager;
 import android.media.Image;
+import android.util.Log;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
+import java.sql.Time;
+import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by jules on 24.11.2016.
@@ -34,8 +38,21 @@ public class Game {
     Map m;
     Ball b;
     public static int FPS =60;
-    public void start(){
 
+    Date startTime;
+    Date endTime;
+
+    public void start(){
+   /*     Timer timer=new Timer();
+        timer.schedule(new TimerTask() {
+            @Override
+            public void run() {
+
+                // Your database code here
+            }
+        },1000);//every second
+*/
+        startTime=new Date();
         m = new Map(2,mapView,currentMap);
         b = new Ball(10, 10,m);
         m.draw();
@@ -53,10 +70,20 @@ public class Game {
                     }
                     });
             }
-
-
         }, 0, 1000 / FPS);
+    }
 
-}
+    long won(){
+        endTime=new Date();
+        long diffInMs=endTime.getTime()-startTime.getTime();
+        long diffInSec=TimeUnit.MILLISECONDS.toSeconds(diffInMs);
+        Log.v("Time",diffInSec+" sec");
+        return (diffInSec);
+
+    }
+    void lost(){
+
+
+    }
 
 }
