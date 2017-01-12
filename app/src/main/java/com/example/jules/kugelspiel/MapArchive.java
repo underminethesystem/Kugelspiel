@@ -215,7 +215,7 @@ public class MapArchive {
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
     };
 
-    public ArrayList<GameMap> getMapList(){
+    public static ArrayList<GameMap> getMapList(){
         ArrayList<GameMap> mapList = new ArrayList<>();
 
         mapList.add(new GameMap(map1));

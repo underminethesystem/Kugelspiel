@@ -27,10 +27,9 @@ public class Game {
 
     GameMap currentMap;
 
-    public Game(ImageView _map, ImageView _ball, GameMap _currentMap){
+    public Game(ImageView _map, ImageView _ball){
         mapView = _map;
         ballView = _ball;
-        currentMap = _currentMap;
         dm = new DirectionManager(MainActivity.sm);
     }
 
@@ -54,7 +53,7 @@ public class Game {
         },1000);//every second
 */
         startTime=new Date();
-        m = new Map(2,mapView,currentMap);
+        m = new Map(mapView);
         b = new Ball(10, 10,m,this);
         m.draw();
         b.draw(ballView);
@@ -81,7 +80,8 @@ public class Game {
         Log.v("End","WON"+diffInSec+" sec");
         // TODO add Time to Database return to menu?
         //MainActivity.act.finish();
-        //MainActivity.act.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+      //  MainActivity.act.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+      //  MainActivity.act.dispatchKeyEvent(new KeyEvent (KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));
         timer.cancel();
         return ( diffInSec);
 
