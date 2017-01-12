@@ -40,27 +40,12 @@ public class FragmentMapselector extends Fragment implements View.OnClickListene
         int duration = Toast.LENGTH_SHORT;
         FragmentManager fragmentManager = getFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        com.example.jules.kugelspiel.Map.mapId = view.getId();
+        FragmentGame fG = new FragmentGame();
 
-        //FragmentGame fG = new FragmentGame(view.getId());
-        //fragmentTransaction.add(R.id.fragment_container, fG);
-        //fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.add(R.id.fragment_container, fG);
+        fragmentTransaction.addToBackStack(null);
 
-        switch(view.getId()) {
-
-            case 1:
-                FragmentGame fG = new FragmentGame();
-                fragmentTransaction.add(R.id.fragment_container, fG);
-                fragmentTransaction.addToBackStack(null);
-                break;
-
-            case 2:
-                FragmentGame fG2 = new FragmentGame();
-                fragmentTransaction.add(R.id.fragment_container, fG2);
-                fragmentTransaction.addToBackStack(null);
-                break;
-
-
-        }
         fragmentTransaction.hide(this);
         fragmentTransaction.commit();
     }

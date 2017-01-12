@@ -34,6 +34,8 @@ public class Map {
     public static int height =30;
     public static int tileSize=40;
 
+    static public int mapId = 0;
+
     public Map(int index,ImageView _iv, GameMap gm) {
 
         currentMap = gm;
