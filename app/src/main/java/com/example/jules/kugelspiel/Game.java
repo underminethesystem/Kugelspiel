@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.hardware.SensorManager;
 import android.media.Image;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 
@@ -38,7 +39,7 @@ public class Game {
     Map m;
     Ball b;
     public static int FPS =60;
-
+    Timer timer;
     Date startTime;
     Date endTime;
 
@@ -54,10 +55,10 @@ public class Game {
 */
         startTime=new Date();
         m = new Map(2,mapView,currentMap);
-        b = new Ball(10, 10,m);
+        b = new Ball(10, 10,m,this);
         m.draw();
         b.draw(ballView);
-        Timer timer = new Timer();
+        timer = new Timer();
         timer.scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
@@ -77,12 +78,18 @@ public class Game {
         endTime=new Date();
         long diffInMs=endTime.getTime()-startTime.getTime();
         long diffInSec=TimeUnit.MILLISECONDS.toSeconds(diffInMs);
-        Log.v("Time",diffInSec+" sec");
-        return (diffInSec);
+        Log.v("End","WON"+diffInSec+" sec");
+        // TODO add Time to Database return to menu?
+        //MainActivity.act.finish();
+        //MainActivity.act.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
+        timer.cancel();
+        return ( diffInSec);
 
     }
     void lost(){
-
+        Log.v("End","Game lost");
+        timer.cancel();
+        //TODO restart Game
 
     }
 

@@ -19,12 +19,13 @@ public class Ball {
     public float currDirY;
     public Map map;
     public static int COLLISION_CHECK_AMOUNT=100; //amt of points to check on ball
-
+    public Game game;
     // TODO: start x and start y depending on map
-    public Ball(float _x, float _y,Map m){
+    public Ball(float _x, float _y,Map m,Game g){
         x = _x;
         y = _y;
         map =m;
+        game=g;
     }
     public boolean isCollision(float x,float y){
         float r=0.4f;
@@ -66,9 +67,13 @@ public class Ball {
             y += currDirY;
         }
         if(map.getTileAt(x,y).type== Tile.TileType.Goal){
-            for (int i=0;i<10;i++)
              System.out.println("YOU WIN!!!!!!!");
+            game.won();
 
+        }
+        if(map.getTileAt(x,y).type== Tile.TileType.Lava){
+            System.out.println("YOU LOST!!!!!!!");
+            game.lost();
         }
     }
 
