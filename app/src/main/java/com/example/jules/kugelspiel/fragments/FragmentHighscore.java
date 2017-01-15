@@ -35,7 +35,7 @@ public class FragmentHighscore extends Fragment {
         View view = inflater.inflate(R.layout.fragment_highscore, container, false);
         dataSource.open();
 
-        List<Highscore> highScoreList = dataSource.getAllHighscores();
+        List<Highscore> highScoreList = dataSource.getThreeHighscores();
         for(Highscore high : highScoreList) {
             dataSource.deleteHighscore(high);
         }

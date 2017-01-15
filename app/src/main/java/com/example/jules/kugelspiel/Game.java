@@ -3,10 +3,15 @@ package com.example.jules.kugelspiel;
 import android.app.Activity;
 import android.hardware.SensorManager;
 import android.media.Image;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+
+import com.example.jules.kugelspiel.fragments.FragmentMenu;
+import com.example.jules.kugelspiel.fragments.FragmentWon;
 
 import java.sql.Time;
 import java.util.Date;
@@ -33,6 +38,7 @@ public class Game {
         dm = new DirectionManager(MainActivity.sm);
     }
 
+    public static int seconds = 0;
     public static DirectionManager dm;
     public static int test=0;
     Map m;
@@ -77,6 +83,8 @@ public class Game {
         endTime=new Date();
         long diffInMs=endTime.getTime()-startTime.getTime();
         long diffInSec=TimeUnit.MILLISECONDS.toSeconds(diffInMs);
+        seconds = (int)diffInSec;
+
         Log.v("End","WON"+diffInSec+" sec");
         // TODO add Time to Database return to menu?
         //MainActivity.act.finish();

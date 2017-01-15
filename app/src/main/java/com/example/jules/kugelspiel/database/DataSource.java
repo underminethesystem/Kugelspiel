@@ -85,7 +85,7 @@ public class DataSource {
         List<Highscore> highscores = new ArrayList<>();
 
         Cursor cursor = database.query(DbHelper.TABLE_HIGHSCORE,
-                columns, null, null, null, null, dbHelper.COLUMN_RANK + " ASC");
+                columns, null, null, null, null, dbHelper.COLUMN_SECONDS + " ASC");
 
         cursor.moveToFirst();
         Highscore highscore;
@@ -99,6 +99,26 @@ public class DataSource {
 
         return highscores;
     }
+
+    public List<Highscore> getThreeHighscores() {
+        List<Highscore> highscores = new ArrayList<>();
+
+        Cursor cursor = database.query(DbHelper.TABLE_HIGHSCORE,
+                columns, null, null, null,null, dbHelper.COLUMN_SECONDS + " ASC", "3");
+
+        cursor.moveToFirst();
+        Highscore highscore;
+
+        while(!cursor.isAfterLast()) {
+            highscore = cursorToHighscore(cursor);
+            highscores.add(highscore);
+            cursor.moveToNext();
+        }
+        cursor.close();
+
+        return highscores;
+    }
+
 
     public void deleteHighscore(Highscore high) {
         int id = high.getId();

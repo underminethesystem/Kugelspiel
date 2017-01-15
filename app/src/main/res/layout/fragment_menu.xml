@@ -38,7 +38,8 @@ tools:context="com.example.jules.kugelspiel.fragments.MainActivity">
         android:id="@+id/menu_settings"
         android:layout_alignParentEnd="true"
         android:layout_marginTop="25dp"
-        android:text="Einstellungen"/>
+        android:text="Einstellungen"
+        android:visibility="invisible" />
 
     <Button
         android:layout_width="wrap_content"

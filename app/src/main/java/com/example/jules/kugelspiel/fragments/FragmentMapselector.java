@@ -34,8 +34,6 @@ public class FragmentMapselector extends Fragment implements View.OnClickListene
         // Required empty public constructor
     }
 
-
-
     @Override
     public void onClick(View view) {
         Context context = getContext();
