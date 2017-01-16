@@ -36,12 +36,12 @@ public class FragmentHighscore extends Fragment {
         dataSource.open();
 
         List<Highscore> highScoreList = dataSource.getThreeHighscores();
-        for(Highscore high : highScoreList) {
-            dataSource.deleteHighscore(high);
-        }
-        dataSource.createHighscore("Hallo",1,1);
-        dataSource.createHighscore("Hallo",2,2);
-        dataSource.createHighscore("Hallo",3,3);
+        //for(Highscore high : highScoreList) {
+        //    dataSource.deleteHighscore(high);
+        //}
+        //dataSource.createHighscore("Horst",60,1);
+        //dataSource.createHighscore("Mark",50,1);
+        //dataSource.createHighscore("Alfred",70,2);
 
         ArrayAdapter<Highscore> highScoreArrayAdapter = new ArrayAdapter<>(
                 this.getContext(),

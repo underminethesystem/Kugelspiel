@@ -39,7 +39,7 @@ public class FragmentWon extends Fragment implements View.OnClickListener{
         {
             dataSource = new DataSource(this.getActivity());
             dataSource.open();
-            dataSource.createHighscore(et.getText().toString(), Game.seconds,0);
+            dataSource.createHighscore(et.getText().toString(), Game.seconds, com.example.jules.kugelspiel.Map.mapId);
             dataSource.close();
         }
 

@@ -104,7 +104,7 @@ public class DataSource {
         List<Highscore> highscores = new ArrayList<>();
 
         Cursor cursor = database.query(DbHelper.TABLE_HIGHSCORE,
-                columns, null, null, null,null, dbHelper.COLUMN_SECONDS + " ASC", "3");
+                columns, dbHelper.COLUMN_RANK + " = " + com.example.jules.kugelspiel.Map.mapId, null, null,null, dbHelper.COLUMN_SECONDS + " ASC", "3");
 
         cursor.moveToFirst();
         Highscore highscore;

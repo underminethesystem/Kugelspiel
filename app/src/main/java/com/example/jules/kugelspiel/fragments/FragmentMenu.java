@@ -36,7 +36,7 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
                 break;
 
             case R.id.menu_Highscore:
-                FragmentHighscore fHighscore = new FragmentHighscore();
+                FragmentHighscoreselector fHighscore = new FragmentHighscoreselector();
                 fragmentTransaction.add(R.id.fragment_container, fHighscore);
                 fragmentTransaction.addToBackStack(null);
                 break;

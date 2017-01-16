@@ -48,9 +48,6 @@ public class Highscore {
     @Override
     public String toString() {
         StringBuilder sb = new StringBuilder();
-        sb.append("");
-        sb.append(this.rank);
-        sb.append(".     ");
         sb.append(this.seconds);
         sb.append("      ");
         sb.append(this.name);
