@@ -9,9 +9,11 @@ import android.support.v4.app.FragmentTransaction;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.jules.kugelspiel.Game;
+import com.example.jules.kugelspiel.MainActivity;
 import com.example.jules.kugelspiel.R;
 import com.example.jules.kugelspiel.database.DataSource;
 import com.example.jules.kugelspiel.database.Highscore;
@@ -32,8 +34,7 @@ public class FragmentWon extends Fragment implements View.OnClickListener{
     @Override
     public void onClick(View view) {
         Context context = getContext();
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
         EditText et = (EditText) view.findViewById(R.id.etName) ;
         if(et.getText().toString().length() > 0)
         {
@@ -53,7 +54,9 @@ public class FragmentWon extends Fragment implements View.OnClickListener{
                              Bundle savedInstanceState) {
 
         dataSource = new DataSource(this.getActivity());
-        View view = inflater.inflate(R.layout.fragment_highscore, container, false);
+        View view = inflater.inflate(R.layout.fragment_won, container, false);
+        Button bnOk = (Button) view.findViewById(R.id.btnOk);
+        bnOk.setOnClickListener(this);
         return view;
     }
 

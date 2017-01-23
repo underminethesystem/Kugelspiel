@@ -87,6 +87,12 @@ public class Game {
 
         Log.v("End","WON"+diffInSec+" sec");
         // TODO add Time to Database return to menu?
+        FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
+        FragmentWon fG = new FragmentWon();
+
+        fragmentTransaction.add(R.id.fragment_container, fG);
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
         //MainActivity.act.finish();
       //  MainActivity.act.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
       //  MainActivity.act.dispatchKeyEvent(new KeyEvent (KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));

@@ -21,6 +21,8 @@ public class MainActivity extends AppCompatActivity {
 
     public static AppCompatActivity act;
 
+    public static FragmentManager fragmentManager;
+
     public static DataSource ds;
 
     @Override
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
 
-        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         FragmentMenu fM = new FragmentMenu();
         fragmentTransaction.add(R.id.fragment_container, fM);

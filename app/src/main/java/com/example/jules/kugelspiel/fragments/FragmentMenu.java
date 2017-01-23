@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
+import com.example.jules.kugelspiel.MainActivity;
 import com.example.jules.kugelspiel.R;
 /**
  * A simple {@link Fragment} subclass.
@@ -24,8 +25,8 @@ public class FragmentMenu extends Fragment implements View.OnClickListener{
 
     @Override
     public void onClick(View view) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
 
         switch(view.getId()) {
 

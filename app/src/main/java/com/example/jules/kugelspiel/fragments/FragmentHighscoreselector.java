@@ -33,8 +33,8 @@ public class FragmentHighscoreselector extends Fragment implements View.OnClickL
     public void onClick(View view) {
         Context context = getContext();
         int duration = Toast.LENGTH_SHORT;
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //MainActivity.fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
         com.example.jules.kugelspiel.Map.mapId = view.getId();
         FragmentHighscore fG = new FragmentHighscore();
 

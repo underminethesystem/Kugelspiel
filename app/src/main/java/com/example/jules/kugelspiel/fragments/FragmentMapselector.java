@@ -38,8 +38,8 @@ public class FragmentMapselector extends Fragment implements View.OnClickListene
     public void onClick(View view) {
         Context context = getContext();
         int duration = Toast.LENGTH_SHORT;
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        //FragmentManager fragmentManager = getFragmentManager();
+        FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
         com.example.jules.kugelspiel.Map.mapId = view.getId();
         FragmentGame fG = new FragmentGame();
 
