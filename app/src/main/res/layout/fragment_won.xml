@@ -16,7 +16,7 @@
         android:id="@+id/winLL">
 
 
-        <TextView
+       <TextView
             android:text="You Win"
             android:gravity="center"
             android:layout_width="match_parent"
@@ -44,11 +44,13 @@
             android:textAlignment="center"
             android:layout_marginTop="50dp"/>
 
+
         <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
             android:text="ME"
+            android:hint="Name"
             android:ems="10"
             android:id="@+id/etName"
             android:textStyle="normal|bold" />
