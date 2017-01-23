@@ -38,12 +38,12 @@ public class FragmentWon extends Fragment implements View.OnClickListener{
     public void onClick(View view) {
         Context context = getContext();
         FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
-        EditText editText = (EditText) view.findViewById(R.id.etName);
-        if(editText.toString().length() > 0)
+        EditText editText = (EditText) MainActivity.act.findViewById(R.id.textEdit1);
+        if(editText.getText().toString().length() > 0)
         {
             dataSource = new DataSource(this.getActivity());
             dataSource.open();
-            dataSource.createHighscore(editText.toString(), Game.seconds, com.example.jules.kugelspiel.Map.mapId);
+            dataSource.createHighscore(editText.getText().toString(), Game.seconds, com.example.jules.kugelspiel.Map.mapId);
             dataSource.close();
         }
         FragmentManager fm = getActivity().getSupportFragmentManager();

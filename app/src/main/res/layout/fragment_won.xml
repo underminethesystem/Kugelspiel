@@ -52,7 +52,7 @@
             android:text="ME"
             android:hint="Name"
             android:ems="10"
-            android:id="@+id/etName"
+            android:id="@+id/textEdit1"
             android:textStyle="normal|bold" />
 
         <TextView
