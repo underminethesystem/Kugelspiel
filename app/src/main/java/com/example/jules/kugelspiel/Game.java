@@ -38,6 +38,7 @@ public class Game {
         dm = new DirectionManager(MainActivity.sm);
     }
 
+    public static boolean won = false;
     public static int seconds = 0;
     public static DirectionManager dm;
     public static int test=0;
@@ -58,6 +59,7 @@ public class Game {
             }
         },1000);//every second
 */
+        won = false;
         startTime=new Date();
         m = new Map(mapView);
         b = new Ball(10, 10,m,this);
@@ -87,12 +89,15 @@ public class Game {
 
         Log.v("End","WON"+diffInSec+" sec");
         // TODO add Time to Database return to menu?
-        FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
-        FragmentWon fG = new FragmentWon();
+        if(won == false) {
+            won = true;
+            FragmentTransaction fragmentTransaction = MainActivity.fragmentManager.beginTransaction();
+            FragmentWon fG = new FragmentWon();
 
-        fragmentTransaction.add(R.id.fragment_container, fG);
-        fragmentTransaction.addToBackStack(null);
-        fragmentTransaction.commit();
+            fragmentTransaction.add(R.id.fragment_container, fG);
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+        }
         //MainActivity.act.finish();
       //  MainActivity.act.dispatchKeyEvent(new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_BACK));
       //  MainActivity.act.dispatchKeyEvent(new KeyEvent (KeyEvent.ACTION_UP, KeyEvent.KEYCODE_BACK));

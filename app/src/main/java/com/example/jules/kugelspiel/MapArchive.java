@@ -10,9 +10,7 @@ import java.util.ArrayList;
 
 public class MapArchive {
 
-    public int getMapCount() {
-        return getClass().getDeclaredFields().length;
-    }
+    public int getMapCount() {return 6;}//getClass().getDeclaredFields().length;
 
     public static int[][] map1={
             {1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1},
